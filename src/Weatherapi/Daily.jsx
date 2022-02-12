@@ -2,8 +2,8 @@ import React,{useEffect,useState} from 'react'
 
 const Daily = () => {
     const [Data,setData]=useState([])
-    const [lat, setLat] = useState([]);
-    const [long, setLong] = useState([]);
+    const [lat, setLat] = useState((22.5726);
+    const [long, setLong] = useState(88.3639);
  
     useEffect(() => {
         const fetchData = async () => {
