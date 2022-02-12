@@ -59,7 +59,7 @@ const fetchData = async () => {
          
            {currentData?<p>Wind speed: {currentData.wind_speed}</p>:""} 
             </div>
-            <div className="cloud">
+            <div data-testid="cloud" className="cloud">
             {!currentData?( <p></p> ):(
                <> 
             
