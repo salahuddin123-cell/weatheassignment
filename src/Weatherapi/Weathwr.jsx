@@ -10,7 +10,7 @@ export default function Weathwr() {
     const [long, setLong] = useState(null);
     useEffect(async() => {
 
-const fetchData = async () => {
+         const fetchData = async () => {
     navigator.geolocation.getCurrentPosition(function(position) {
        
       setLat(position.coords.latitude);
@@ -35,11 +35,7 @@ const fetchData = async () => {
       return `${new Date(timestamp*1000).getHours()}:${new Date(timestamp*1000).getMinutes()}`
   }
 
-   
-
-  
-  
-    return (
+return (
         <div className="container">
 <div className="content">
         
@@ -50,9 +46,7 @@ const fetchData = async () => {
             <h3 id="temp">{currentData.temp}°C</h3>
             
              </div>)
-            
-             
-            }
+             }
          
             {!currentData?(""):<><p>sunrise :{getTime(currentData.sunrise)} a.m <i class="fal fa-sunrise"></i></p><p>sunset :{getTime(currentData.sunset)} p.m <i class="fas fa-sunset"></i></p></>} 
            

@@ -83,6 +83,7 @@ border-radius: 5px;
 .container{
   width: 80vw;
  height: 50vh;
+ flex-direction: column;
 }
 .main{
   height: auto;
