@@ -6,8 +6,8 @@ export default function Weathwr() {
     const [Data,setData]=useState()
     const[currentData,setCurrentData]=useState()
   
-    const [lat, setLat] = useState(null);
-    const [long, setLong] = useState(null);
+    const [lat, setLat] = useState(22.5726);
+    const [long, setLong] = useState(88.3639);
     useEffect(async() => {
 
          const fetchData = async () => {
