@@ -3,13 +3,13 @@ import { UserContext } from "../App";
 const Daily = () => {
 
   
+  const [Data,setData]=useState([])
+    
   const {lat, setLat,long, setLong}=useContext(UserContext)
 
-  useEffect(() => {
-    const fetchData = async () => {
 
-    const [Data,setData]=useState([])
-    
+
+
  
     useEffect(() => {
         const fetchData = async () => {
@@ -29,17 +29,7 @@ const Daily = () => {
           
         }, [lat,long])
 
-    
-
-      const url1 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely&units=metric&appid=395223c27468a2be96c0812062942720`;
-
-      const responce = await fetch(url1);
-      const data = await responce.json();
-      console.log(data);
-      setData(data.daily);
-    };
-    fetchData();
-  }, [lat, long]);
+  
 
   const getDate = (timestamp) => {
     const dayname = new Date(timestamp * 1000).toLocaleDateString("en", {
