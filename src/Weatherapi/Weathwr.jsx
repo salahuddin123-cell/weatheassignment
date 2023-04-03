@@ -11,9 +11,7 @@ export default function Weathwr() {
   const [country,setcountry]=useState({iso2: "IN", lat: 20, long: 77, name: "India"})
 
 
-    const [Data,setData]=useState()
-    const[currentData,setCurrentData]=useState()
-  
+   
     const [lat, setLat] = useState(null);
     const [long, setLong] = useState(null);
     useEffect(async() => {
