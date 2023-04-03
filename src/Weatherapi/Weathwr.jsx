@@ -11,28 +11,19 @@ export default function Weathwr() {
   const [country,setcountry]=useState({iso2: "IN", lat: 20, long: 77, name: "India"})
 
 
-  const {lat, setLat,long, setLong}=useContext(UserContext)
+    const [Data,setData]=useState()
+    const[currentData,setCurrentData]=useState()
+  
+    const [lat, setLat] = useState(null);
+    const [long, setLong] = useState(null);
+    useEffect(async() => {
 
-  useEffect(()=>{
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '6482e15532msh91b527b8d8f948ap16d0a3jsn2b886bbe28c9',
-        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-      }
-    };
-    
-    fetch('https://countriesnow.space/api/v0.1/countries/positions')
-      .then(response => response.json())
-      .then(response =>setcountries(response.data))
-      .catch(err => console.error(err));
-  },[])
-  useEffect( () => {
-    const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
+         const fetchData = async () => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+       
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
 
       const url1 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely&units=metric&appid=395223c27468a2be96c0812062942720`;
 
