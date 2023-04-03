@@ -10,10 +10,7 @@ export default function Weathwr() {
   const [countris,setcountries]=useState([])
   const [country,setcountry]=useState({iso2: "IN", lat: 20, long: 77, name: "India"})
 
-
-   
-    const [lat, setLat] = useState(null);
-    const [long, setLong] = useState(null);
+  const {lat, setLat,long, setLong}=useContext(UserContext)
     useEffect(async() => {
 
          const fetchData = async () => {
