@@ -2,7 +2,7 @@ import React, { useEffect, useState,useContext } from "react";
 import { UserContext } from "../App";
 const Daily = () => {
 
-  const [Data, setData] = useState([]);
+  
   const {lat, setLat,long, setLong}=useContext(UserContext)
 
   useEffect(() => {
