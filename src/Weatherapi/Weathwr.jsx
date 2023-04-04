@@ -11,6 +11,14 @@ export default function Weathwr() {
   const [country,setcountry]=useState({iso2: "IN", lat: 20, long: 77, name: "India"})
 
   const {lat, setLat,long, setLong}=useContext(UserContext)
+
+  useEffect(() => {
+    fetch('https://countriesnow.space/api/v0.1/countries/positions')
+	.then(response => response.json())
+	.then(response => setcountries(response.data))
+	.catch(err => console.error(err));
+  }, [])
+  
     useEffect(() => {
       
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -32,11 +40,13 @@ export default function Weathwr() {
     fetchData();
   }, [lat, long]);
 
+
   const getTime = (timestamp) => {
     return `${new Date(timestamp * 1000).getHours()}:${new Date(
       timestamp * 1000
     ).getMinutes()}`;
   };
+
 
   return (
     <div className="containers">
