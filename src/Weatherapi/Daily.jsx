@@ -53,8 +53,8 @@ const Daily = () => {
                 <p>{getDate(elem.dt)}</p>
                 <p>Sunrise :{getTime(elem.sunrise)} a.m</p>
                 <p>Sunset :{getTime(elem.sunset)} p.m</p>
-                <small>
-                  Max:{elem.temp.max}°C Min:{elem.temp.min}°C
+                <small style={{fontSize:"10px"}}>
+                  Max temp:{elem.temp.max}°C Min:{elem.temp.min}°C
                 </small>
                 <img
                   src={`http://openweathermap.org/img/w/${elem.weather[0].icon}.png`}

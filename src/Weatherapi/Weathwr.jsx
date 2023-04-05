@@ -8,16 +8,33 @@ export default function Weathwr() {
   const [Data, setData] = useState();
   const [currentData, setCurrentData] = useState();
   const [countris,setcountries]=useState([])
-  const [country,setcountry]=useState({iso2: "IN", lat: 20, long: 77, name: "India"})
+  const [cities,setcities]=useState(["Kolkata","Mumbai","Delhi","Bangalore","Hyderabad","Ahmedabad","Chennai","Pune","kanpur","Lucknow","indore"])
+  const [country,setcountry]=useState({iso2: "IN", lat: 20, long: 77, country: "India"})
+  const [city,setcity]=useState('Kolkata')
 
   const {lat, setLat,long, setLong}=useContext(UserContext)
 
   useEffect(() => {
-    fetch('https://countriesnow.space/api/v0.1/countries/positions')
+    fetch('https://countriesnow.space/api/v0.1/countries')
 	.then(response => response.json())
 	.then(response => setcountries(response.data))
 	.catch(err => console.error(err));
   }, [])
+
+  useEffect(() => {
+    fetch(`https://api.api-ninjas.com/v1/geocoding?city=' + ${city}&country=${country.country}`,{
+      method:'get',
+      headers: {
+        'X-Api-Key': 'mUtdUZMcjRzppKRe85e9Gg==bWMRNDZcnvddJvSO'
+      },
+    })
+	.then(response => response.json())
+	.then(response =>{ console.log(response)
+  setLat(response[0].latitude)
+  setLong(response[0].longitude)
+  })
+	.catch(err => console.error(err));
+  }, [city])
   
     useEffect(() => {
       
@@ -50,22 +67,35 @@ export default function Weathwr() {
 
   return (
     <div className="containers">
-     
+      <div className="selec">
           <Autocomplete
       disablePortal
       id="combo-box-demo"
       options={countris}
-      sx={{ width: 300 }}
-      getOptionLabel={(option) => option.name}
+      sx={{ width: 150 }}
+      getOptionLabel={(option) => option.country}
       value={country}
       onChange={(event, newValue) => {
         setcountry(newValue);
-        setLat(newValue?.lat);
-        setLong(newValue?.long)
+      
+        setcities(newValue.cities)
+        setcity(newValue.cities[0])
       }}
-      renderInput={(params) => <TextField {...params} label="country" />}
+      renderInput={(params) => <TextField {...params} label="Country" />}
     />
- 
+           <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={cities}
+      sx={{ width: 150 }}
+      getOptionLabel={(option) => option}
+      value={city}
+      onChange={(event, newValue) => {
+        setcity(newValue)
+      }}
+      renderInput={(params) => <TextField {...params} label="City" />}
+    />
+ </div>
     <div className="container">
       <div className="content">
         {Data ? <h1 data-testid="heads">{Data.timezone}</h1> : ""}
